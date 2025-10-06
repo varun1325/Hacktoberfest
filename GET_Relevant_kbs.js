@@ -1,11 +1,27 @@
-var searchTerm = "Oracle expenses routed to previous manager incorrectly";
+// Install plugin "Knowledge Management - Service Portal"
+// Create a Search Context
+// Go to:
+// AI Search → Configurations → Search Context Configurations
+// Click New.
+// Give it a name like “Knowledge Portal Search”.
+// Choose:
+// Search Application: Knowledge
+// Search Sources: select Knowledge Article table.
+// Configure ranking, facets, filters, etc.
+// Save the record — this will generate your searchContextConfigId"
+
+// rpSysId: This is the Record Producer’s sys_id or portal page context record.
+// searchContextConfigId: The Search Context Configuration sys_id — defines which tables, fields, and ranking rules AI Search should use.
+// searchTerm: The text you’re searching for (the problem statement).
+
+var searchTerm = "Oracle expenses routed to previous manager incorrectly"; //provide short description
 var searchPayload = JSON.stringify({
     "rpSysId": "3f1dd0320a0a0b99000a53f7604a2ef9",
     "searchContextConfigId": "2e74f9b077e40210694782c79f5a99e8",
     "searchTerm": searchTerm
 });
 var aiClient = new sn_ws.RESTMessageV2();
-aiClient.setEndpoint("https://nowops.service-now.com/api/now/aisa/search");
+aiClient.setEndpoint("https://<your_instance>.service-now.com/api/now/aisa/search");
 aiClient.setHttpMethod("POST");
  
 aiClient.setRequestHeader("Content-Type", "application/json");
